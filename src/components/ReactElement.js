@@ -1,36 +1,43 @@
 import React, {Component} from "react";
 import map from "lodash/map";
-import AppBar from "./AppBar";
-import {WxComponents} from "../utils/Constants";
+import {RemoteAppBar} from "./RemoteAppBar";
+import {REMOTE_COMPONENT, RemoteComponent} from "../utils/Constants";
+import {RemoteFlatButton, RemoteFloatingActionButton, RemoteIconButton, RemoteRaisedButton} from "./RemoteButton";
 
 class ReactElement extends Component {
 
-    render() {
-        return (
-            <div>{this.getUI(this.props.fields, 0)}</div>
-        );
-    }
-
-    getUI = (fields, index = 0) => {
+    getRemoteUI = (config, index = 0) => {
         let returnObj = undefined;
-        if (fields instanceof Array) {
-            returnObj = map(fields, (listItem, index) => getUI(listItem, index));
+        if (config instanceof Array) {
+            returnObj = map(config, (listItem, index) => this.getRemoteUI(listItem, index));
             return returnObj; // Process if item is not an Array
-        } else if (fields) {
+        } else if (config) {
             let passingProps = {
-                elementState: elementState,
-                metadata: fields,
-                key: index,
-                style: item.style,
-                onClick: this.onClick
+                key: index, ...config
             };
-            switch (item.type) {
-                case WxComponents.APP_BAR :
-                    return <AppBar {...passingProps}/>
+            switch (config.type) {
+                case REMOTE_COMPONENT.APP_BAR :
+                    return <RemoteAppBar {...passingProps}/>;
+                case REMOTE_COMPONENT.BUTTON_FLAT :
+                    return <RemoteFlatButton {...passingProps}/>;
+                case REMOTE_COMPONENT.BUTTON_RAISED :
+                    return <RemoteRaisedButton {...passingProps}/>;
+                case REMOTE_COMPONENT.BUTTON_ICON :
+                    return <RemoteIconButton {...passingProps}/>;
+                case REMOTE_COMPONENT.BUTTON_FAB :
+                    return <RemoteFloatingActionButton {...passingProps}/>;
             }
         }
 
     };
+
+    render() {
+        let {config = []} = this.props;
+        return (
+            <div>{this.getRemoteUI(config, 0)}</div>
+        );
+    }
+
 }
 
 ReactElement.propTypes = {};

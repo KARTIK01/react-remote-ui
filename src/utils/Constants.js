@@ -4,7 +4,7 @@ export const WebHookConstants = {
     POST_METHOD: 'POST'
 };
 
-export const WxComponents = {
+export const REMOTE_COMPONENT = {
     APP_BAR: 'app_bar',
     LIST: 'list',
     AUTO_COMPLETE: 'auto_complete',
