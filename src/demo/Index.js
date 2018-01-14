@@ -1,12 +1,10 @@
 import React, {Component} from "react";
-import BasicComponents from "./basic/BasicComponents";
+import Routes from "./Routes";
 
 class Index extends Component {
     render() {
         return (
-            <div>
-                <BasicComponents />
-            </div>
+            <Routes />
         );
     }
 }

@@ -3,6 +3,8 @@ import map from "lodash/map";
 import {RemoteAppBar} from "./RemoteAppBar";
 import {REMOTE_COMPONENT, RemoteComponent} from "../utils/Constants";
 import {RemoteFlatButton, RemoteFloatingActionButton, RemoteIconButton, RemoteRaisedButton} from "./RemoteButton";
+import RemoteForm from "./RemoteForm";
+import {RemoteTextField} from "./RemoteTextField";
 
 class ReactElement extends Component {
 
@@ -13,7 +15,8 @@ class ReactElement extends Component {
             return returnObj; // Process if item is not an Array
         } else if (config) {
             let passingProps = {
-                key: index, ...config
+                key: index, ...config,
+                onChange: this.props.onChange
             };
             switch (config.type) {
                 case REMOTE_COMPONENT.APP_BAR :
@@ -26,9 +29,16 @@ class ReactElement extends Component {
                     return <RemoteIconButton {...passingProps}/>;
                 case REMOTE_COMPONENT.BUTTON_FAB :
                     return <RemoteFloatingActionButton {...passingProps}/>;
+
+
+                case REMOTE_COMPONENT.TEXT :
+                    return <RemoteTextField {...passingProps}/>;
+
+
+                case REMOTE_COMPONENT.FORM :
+                    return <RemoteForm {...passingProps}/>;
             }
         }
-
     };
 
     render() {

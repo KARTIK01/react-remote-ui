@@ -27,12 +27,26 @@
     "fullWidth": true
   },
   {
-    "type": "raised_button"
+    "type": "flat_button",
+    "label": "Label before",
+    "labelPosition": "before",
+    "primary": true,
+    "icon": "android",
+    "iconColor": "#bae871"
   },
   {
-    "type": "icon_button"
+    "type": "raised_button",
+    "label": "Primary"
   },
   {
-    "type": "floating_action_button"
+    "type": "icon_button",
+    "style": {
+      "padding": 14
+    },
+    "icon": "home"
+  },
+  {
+    "type": "floating_action_button",
+    "icon": "home"
   }
 ]
