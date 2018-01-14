@@ -12,7 +12,6 @@ class RemoteForm extends Component {
         let {webhook} = this.props;
         event && event.preventDefault();
         if (webhook) {
-            console.log("--------", this.state.formSubmitInfo);
             let {url, method} = webhook;
             fetch(url, {method, body: JSON.stringify(this.state.formSubmitInfo)})
                 .then(res => res.json())
